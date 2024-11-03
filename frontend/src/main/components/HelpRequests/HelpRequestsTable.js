@@ -21,7 +21,7 @@ export default function HelpRequestsTable({ helpRequests, currentUser }) {
   const deleteMutation = useBackendMutation(
     cellToAxiosParamsDelete,
     { onSuccess: onDeleteSuccess },
-    ["/api/helprequests/all"]
+    ["/api/helprequests/all"],
   );
   // Stryker restore all
 
@@ -63,10 +63,10 @@ export default function HelpRequestsTable({ helpRequests, currentUser }) {
 
   if (hasRole(currentUser, "ROLE_ADMIN")) {
     columns.push(
-      ButtonColumn("Edit", "primary", editCallback, "HelpRequestsTable")
+      ButtonColumn("Edit", "primary", editCallback, "HelpRequestsTable"),
     );
     columns.push(
-      ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestsTable")
+      ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestsTable"),
     );
   }
 
