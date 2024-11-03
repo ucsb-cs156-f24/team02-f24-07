@@ -108,7 +108,6 @@ function HelpRequestForm({
               data-testid="HelpRequestForm-requestTime"
               id="requestTime"
               type="datetime-local"
-              formNoValidate={false}
               isInvalid={Boolean(errors.requestTime)}
               {...register("requestTime", {
                 required: true,
@@ -146,7 +145,6 @@ function HelpRequestForm({
               data-testid="HelpRequestForm-solved"
               id="solved"
               type="checkbox"
-              required={false}
               isInvalid={Boolean(errors.solved)}
               {...register("solved", {})}
             />
