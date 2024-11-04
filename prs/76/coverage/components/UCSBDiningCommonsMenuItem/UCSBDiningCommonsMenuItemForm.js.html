@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -186,7 +186,11 @@
 <a name='L121'></a><a href='#L121'>121</a>
 <a name='L122'></a><a href='#L122'>122</a>
 <a name='L123'></a><a href='#L123'>123</a>
-<a name='L124'></a><a href='#L124'>124</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,11 +204,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -216,7 +220,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -299,9 +303,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -309,24 +313,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Button, Form } from "react-bootstrap";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Button, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 &nbsp;
-function <span class="fstat-no" title="function not covered" >UCSBDiningCommonsMenuItemForm(</span>{
+function UCSBDiningCommonsMenuItemForm({
   initialContents,
   submitAction,
-  buttonLabel = <span class="branch-0 cbranch-no" title="branch not covered" >"Create",</span>
+  buttonLabel = "Create",
 }) {
-  // Stryker disable all
+  //Stryker disable all
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = <span class="cstat-no" title="statement not covered" >useForm({ defaultValues: initialContents || {} });</span>
-  // Stryker restore all
+  } = useForm({
+    defaultValues: initialContents || {},
+  });
 &nbsp;
-  const navigate = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
+  const navigate = useNavigate();
 &nbsp;
   // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
   // Note that even this complex regex may still need some tweaks
@@ -338,95 +347,98 @@ function <span class="fstat-no" title="function not covered" >UCSBDiningCommonsM
 &nbsp;
 &nbsp;
 &nbsp;
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
+      &lt;Row&gt;
+        {initialContents &amp;&amp; (
+          &lt;Col&gt;
+            &lt;Form.Group className="mb-3"&gt;
+              &lt;Form.Label htmlFor="id"&gt;ID&lt;/Form.Label&gt;
+              &lt;Form.Control
+                data-testid="UCSBDiningCommonsMenuItemForm-id"
+                id="id"
+                type="text"
+                {...register("id")}
+                value={initialContents.id}
+                disabled
+              /&gt;
+            &lt;/Form.Group&gt;
+          &lt;/Col&gt;
+        )}
 &nbsp;
-      {initialContents &amp;&amp; (
+        &lt;Col&gt;
+          &lt;Form.Group className="mb-3"&gt;
+            &lt;Form.Label htmlFor="diningCommonsCode"&gt;
+              Dining Commons Code
+            &lt;/Form.Label&gt;
+            &lt;Form.Control
+              data-testid="UCSBDiningCommonsMenuItemForm-diningCommonsCode"
+              id="diningCommonsCode"
+              type="text"
+              isInvalid={Boolean(errors.diningCommonsCode)}
+              {...register("diningCommonsCode", { required: true })}
 &nbsp;
-        &lt;Form.Group className="mb-3"&gt;
-          &lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
-          &lt;Form.Control
-            data-testid="UCSBDiningCommonsMenuItemForm-id"
-            id="id"
-            type="text"
-            {...register("id")}
-            value={initialContents.id}
-            disabled
-          /&gt;
-        &lt;/Form.Group&gt;
+            /&gt;
+            &lt;Form.Control.Feedback type="invalid"&gt;
+              {errors.diningCommonsCode &amp;&amp; "DiningCommonsCode is required"}
+              
 &nbsp;
-      )}
-&nbsp;
-&nbsp;
-      &lt;Form.Group className="mb-3"&gt;
-        &lt;Form.Label htmlFor="diningCommonsCode"&gt;Dining Commons Code&lt;/Form.Label&gt;
-        &lt;Form.Control
-          data-testid="UCSBDiningCommonsMenuItemForm-diningCommonsCode"
-          id="diningCommonsCode"
-          type="text"
-          isInvalid={Boolean(errors.diningCommonsCode)}
-          {...register("diningCommonsCode", {
-            required: "Dining Commons Code is required",
-&nbsp;
-          })}
-        /&gt;
-        &lt;Form.Control.Feedback type="invalid"&gt;
-&nbsp;
-          {errors.diningCommonsCode?.message}
-&nbsp;
-        &lt;/Form.Control.Feedback&gt;
-      &lt;/Form.Group&gt;
-&nbsp;
-&nbsp;
-&nbsp;
-      &lt;Form.Group className="mb-3"&gt;
-        &lt;Form.Label htmlFor="name"&gt;Name&lt;/Form.Label&gt;
-        &lt;Form.Control
-        data-testid="UCSBDiningCommonsMenuItemForm-name"
-        id="name"
-        type="text"
-        isInvalid={Boolean(errors.name)}
-        {...register("name", {
-            required: "Name is required",
-        })}
-        /&gt;
-&nbsp;
-        &lt;Form.Control.Feedback type="invalid"&gt;
-          {errors.name?.message}
-        &lt;/Form.Control.Feedback&gt;
-      &lt;/Form.Group&gt;
+            &lt;/Form.Control.Feedback&gt;
+          &lt;/Form.Group&gt;
+        &lt;/Col&gt;
+        &lt;Col&gt;
+          &lt;Form.Group className="mb-3"&gt;
+            &lt;Form.Label htmlFor="station"&gt;Station&lt;/Form.Label&gt;
+            &lt;Form.Control
+              data-testid="UCSBDiningCommonsMenuItemForm-station"
+              id="station"
+              type="text"
+              isInvalid={Boolean(errors.station)}
+              {...register("station", { required: true })}
+            /&gt;
+            &lt;Form.Control.Feedback type="invalid"&gt;
+              {errors.station &amp;&amp; "Station is required"}
+            &lt;/Form.Control.Feedback&gt;
+          &lt;/Form.Group&gt;
+        &lt;/Col&gt;
+      &lt;/Row&gt;
 &nbsp;
 &nbsp;
 &nbsp;
 &nbsp;
-      &lt;Form.Group className="mb-3"&gt;
-        &lt;Form.Label htmlFor="station"&gt;Station&lt;/Form.Label&gt;
-        &lt;Form.Control
-          data-testid="UCSBDiningCommonsMenuItemForm-station"
-          id="station"
-          type="text"
-          isInvalid={Boolean(errors.station)}
-          {...register("station", {
-            required: "Station is required",
-          })}
-        /&gt;
-        &lt;Form.Control.Feedback type="invalid"&gt;
-          {errors.station?.message}
-        &lt;/Form.Control.Feedback&gt;
-      &lt;/Form.Group&gt;
+      &lt;Row&gt;
+        &lt;Col&gt;
+          &lt;Form.Group className="mb-3"&gt;
+            &lt;Form.Label htmlFor="name"&gt;Name&lt;/Form.Label&gt;
+            &lt;Form.Control
+              data-testid="UCSBDiningCommonsMenuItemForm-name"
+              id="name"
+              type="text"
+              isInvalid={Boolean(errors.name)}
+              {...register("name", { required: true })}
+            /&gt;
+            &lt;Form.Control.Feedback type="invalid"&gt;
+              {errors.name &amp;&amp; "Name is required"}
+            &lt;/Form.Control.Feedback&gt;
+          &lt;/Form.Group&gt;
+        &lt;/Col&gt;
+      &lt;/Row&gt;
 &nbsp;
-      &lt;Button type="submit" data-testid="UCSBDiningCommonsMenuItemForm-submit" &gt;
-        {buttonLabel}
-      &lt;/Button&gt;
-      &lt;Button
-        variant="Secondary"
-        data-testid="UCSBDiningCommonsMenuItemForm-cancel"
-        onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigate(-1)}</span>
-      &gt;
-        
-        Cancel
-      &lt;/Button&gt;
+      &lt;Row&gt;
+        &lt;Col&gt;
+          &lt;Button
+            type="submit" data-testid="UCSBDiningCommonsMenuItemForm-submit"&gt;
+              {buttonLabel}
+          &lt;/Button&gt;
+          &lt;Button
+            variant="Secondary"
+            onClick={() =&gt; {navigate(-1);}}
+            data-testid="UCSBDiningCommonsMenuItemForm-cancel"
+          &gt;
+            Cancel
+          &lt;/Button&gt;
+        &lt;/Col&gt;
+      &lt;/Row&gt;
     &lt;/Form&gt;
   );
 }
@@ -439,7 +451,7 @@ export default UCSBDiningCommonsMenuItemForm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-04T05:43:17.746Z
+                at 2024-11-04T21:22:38.643Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
