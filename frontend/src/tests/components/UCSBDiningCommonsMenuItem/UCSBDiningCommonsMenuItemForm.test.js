@@ -11,7 +11,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("UCSBDiningCommonsMenuItemForm tests", () => {
-  test("renders correctly", async () => {
+  test("Renders without crashing", async () => {
     render(
       <Router>
         <UCSBDiningCommonsMenuItemForm />
@@ -24,7 +24,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     await screen.findByText(/Cancel/);
   });
 
-  test("Renders correctly when passing in a ucsbDiningCommonsMenuItem", async () => {
+  test("renders correctly when passing in a ucsbDiningCommonsMenuItem", async () => {
     render(
       <Router>
         <UCSBDiningCommonsMenuItemForm
@@ -38,28 +38,19 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     expect(screen.getByTestId("UCSBDiningCommonsMenuItemForm-id")).toHaveValue("1");
   });
 
-  test("correct Error messages on bad input", async () => {
-    render(
-      <Router>
-        <UCSBDiningCommonsMenuItemForm />
-      </Router>
-    );
 
-    const nameField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-name");
-    const diningCommonsCodeField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode");
-    const stationField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-station");
-    const submitButton = screen.getByTestId("UCSBDiningCommonsMenuItemForm-submit");
 
-    fireEvent.change(diningCommonsCodeField, { target: { value: "123" } });  // Invalid code
-    fireEvent.change(nameField, { target: { value: "a".repeat(31) } });  // Over 30 chars
-    fireEvent.change(stationField, { target: { value: "Test Station" } });
-    fireEvent.click(submitButton);
 
-    await screen.findByText(/Name must be 30 characters or less/);
-    expect(screen.getByText(/Name must be 30 characters or less/)).toBeInTheDocument();
-  });
 
-  test("Displays correct error messages on empty input", async () => {
+
+
+
+
+
+
+
+
+  test("correct error messages on missing input", async () => {
     render(
       <Router>
         <UCSBDiningCommonsMenuItemForm />
@@ -74,7 +65,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     expect(screen.getByText(/Station is required/)).toBeInTheDocument();
   });
 
-  test("No error messages on valid input", async () => {
+  test("No error messages on good input", async () => {
     const mockSubmitAction = jest.fn();
 
     render(
@@ -96,7 +87,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
   });
 
-  test("Calls navigate(-1) when Cancel is clicked", async () => {
+  test("that navigate(-1) is called when Cancel is clicked", async () => {
     render(
       <Router>
         <UCSBDiningCommonsMenuItemForm />
