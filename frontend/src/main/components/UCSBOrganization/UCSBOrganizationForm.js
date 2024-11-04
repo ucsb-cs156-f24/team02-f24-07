@@ -56,7 +56,9 @@ function OrganizationForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="orgTranslationShort">Short Organization Translation</Form.Label>
+        <Form.Label htmlFor="orgTranslationShort">
+          Short Organization Translation
+        </Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-orgTranslationShort"}
           id="orgTranslationShort"
@@ -76,7 +78,9 @@ function OrganizationForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="orgTranslation">Organization Translation</Form.Label>
+        <Form.Label htmlFor="orgTranslation">
+          Organization Translation
+        </Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-orgTranslation"}
           id="orgTranslation"

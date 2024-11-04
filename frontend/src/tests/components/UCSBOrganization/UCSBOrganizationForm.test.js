@@ -16,7 +16,11 @@ jest.mock("react-router-dom", () => ({
 describe("OrganizationForm tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["Organization Code", "Organization Translation", "Short Organization Translation"];
+  const expectedHeaders = [
+    "Organization Code",
+    "Organization Translation",
+    "Short Organization Translation",
+  ];
   const testId = "OrganizationForm";
 
   test("renders correctly with no initialContents", async () => {
@@ -40,7 +44,9 @@ describe("OrganizationForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <OrganizationForm initialContents={ucsbOrganizationFixtures.oneOrganization} />
+          <OrganizationForm
+            initialContents={ucsbOrganizationFixtures.oneOrganization}
+          />
         </Router>
       </QueryClientProvider>,
     );
@@ -53,7 +59,9 @@ describe("OrganizationForm tests", () => {
     });
 
     expect(await screen.findByTestId(`${testId}-inactive`)).toBeInTheDocument();
-    expect(await screen.findByTestId(`${testId}-orgTranslation`)).toBeInTheDocument();
+    expect(
+      await screen.findByTestId(`${testId}-orgTranslation`),
+    ).toBeInTheDocument();
     expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
     expect(screen.getByText(`Id`)).toBeInTheDocument();
   });
@@ -83,31 +91,42 @@ describe("OrganizationForm tests", () => {
       </QueryClientProvider>,
     );
 
-	expect(await screen.findByTestId(`${testId}-submit`)).toBeInTheDocument();
+    expect(await screen.findByTestId(`${testId}-submit`)).toBeInTheDocument();
     const submitButton = screen.getByTestId(`${testId}-submit`);
     fireEvent.click(submitButton);
-	
+
     await screen.findByText(/Organization Code is required./);
-    expect(screen.getByText(/Organization Translation is required./)).toBeInTheDocument();
-    expect(screen.getByText(/Organization Translation Short is required./)).toBeInTheDocument();
-	
+    expect(
+      screen.getByText(/Organization Translation is required./),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Organization Translation Short is required./),
+    ).toBeInTheDocument();
+
     const codeInput = screen.getByTestId(`${testId}-orgCode`);
     fireEvent.change(codeInput, { target: { value: "a".repeat(31) } });
     fireEvent.click(submitButton);
-	
+
     await waitFor(() => {
-		expect(screen.getByText(/Max length 30 characters/)).toBeInTheDocument();
+      expect(screen.getByText(/Max length 30 characters/)).toBeInTheDocument();
     });
-	
-	
-	expect(await screen.findByTestId(`${testId}-orgTranslationShort`)).toBeInTheDocument();
-	const translationInput = screen.getByTestId(`${testId}-orgTranslationShort`);
+
+    expect(
+      await screen.findByTestId(`${testId}-orgTranslationShort`),
+    ).toBeInTheDocument();
+    const translationInput = screen.getByTestId(
+      `${testId}-orgTranslationShort`,
+    );
     fireEvent.change(codeInput, { target: { value: "a" } });
     fireEvent.change(translationInput, { target: { value: "a".repeat(31) } });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText(/Max length for the short translation is 30 characters/)).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          /Max length for the short translation is 30 characters/,
+        ),
+      ).toBeInTheDocument();
     });
   });
 });
