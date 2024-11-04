@@ -1,9 +1,9 @@
 import React from "react";
-import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemForm";
-import { ucsbDiningCommonsMenuItemsFixtures } from "fixtures/ucsbDiningCommonsMenuItemsFixtures";
+import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm";
+import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
 
 export default {
-  title: "components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemForm",
+  title: "components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm",
   component: UCSBDiningCommonsMenuItemForm,
 };
 
@@ -16,7 +16,7 @@ export const Create = Template.bind({});
 Create.args = {
   buttonLabel: "Create",
   submitAction: (data) => {
-    console.log("Submit", data);
+    console.log("Submit was clicked with data: ", data);
     window.alert("Submit was clicked with data: " + JSON.stringify(data));
   },
 };
@@ -24,9 +24,8 @@ Create.args = {
 export const Update = Template.bind({});
 
 Update.args = {
-  initialContents: ucsbDiningCommonsMenuItemsFixtures.oneUcsbDiningCommonsMenuItem,
+  initialContents: ucsbDiningCommonsMenuItemFixtures.oneDCMI,
   buttonLabel: "Update",
-
   submitAction: (data) => {
     console.log("Submit was clicked with data: ", data);
     window.alert("Submit was clicked with data: " + JSON.stringify(data));
