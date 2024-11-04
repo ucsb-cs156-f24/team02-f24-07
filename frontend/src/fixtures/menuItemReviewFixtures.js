@@ -1,5 +1,3 @@
-import { startTransition } from "react";
-
 const menuItemReviewFixtures = {
     oneReview: {
       id: 1,
