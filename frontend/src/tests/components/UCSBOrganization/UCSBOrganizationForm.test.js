@@ -52,6 +52,7 @@ describe("OrganizationForm tests", () => {
       expect(header).toBeInTheDocument();
     });
 
+    expect(await screen.findByTestId(`${testId}-inactive`)).toBeInTheDocument();
     expect(await screen.findByTestId(`${testId}-orgTranslation`)).toBeInTheDocument();
     expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
     expect(screen.getByText(`Id`)).toBeInTheDocument();

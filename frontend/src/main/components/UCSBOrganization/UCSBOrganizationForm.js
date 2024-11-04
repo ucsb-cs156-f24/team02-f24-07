@@ -91,7 +91,19 @@ function OrganizationForm({
         </Form.Control.Feedback>
       </Form.Group>
 
-      
+      <Form.Group className="mb-3">
+        <Form.Label htmlFor="inactive">Inactive</Form.Label>
+        <Form.Check
+          data-testid={testIdPrefix + "-inactive"}
+          id="inactive"
+          type="checkbox"
+          isInvalid={Boolean(errors.inactive)}
+          {...register("inactive", {})}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.inactive?.message}
+        </Form.Control.Feedback>
+      </Form.Group>
 
       <Button type="submit" data-testid={testIdPrefix + "-submit"}>
         {buttonLabel}
