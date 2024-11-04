@@ -21,13 +21,6 @@ function UCSBDiningCommonsMenuItemForm({
   // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
   // Note that even this complex regex may still need some tweaks
 
-
-
-
-
-
-
-
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
       <Row>
@@ -58,12 +51,9 @@ function UCSBDiningCommonsMenuItemForm({
               type="text"
               isInvalid={Boolean(errors.diningCommonsCode)}
               {...register("diningCommonsCode", { required: true })}
-
             />
             <Form.Control.Feedback type="invalid">
               {errors.diningCommonsCode && "DiningCommonsCode is required"}
-              
-
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -83,9 +73,6 @@ function UCSBDiningCommonsMenuItemForm({
           </Form.Group>
         </Col>
       </Row>
-
-
-
 
       <Row>
         <Col>
@@ -108,12 +95,16 @@ function UCSBDiningCommonsMenuItemForm({
       <Row>
         <Col>
           <Button
-            type="submit" data-testid="UCSBDiningCommonsMenuItemForm-submit">
-              {buttonLabel}
+            type="submit"
+            data-testid="UCSBDiningCommonsMenuItemForm-submit"
+          >
+            {buttonLabel}
           </Button>
           <Button
             variant="Secondary"
-            onClick={() => {navigate(-1);}}
+            onClick={() => {
+              navigate(-1);
+            }}
             data-testid="UCSBDiningCommonsMenuItemForm-cancel"
           >
             Cancel
