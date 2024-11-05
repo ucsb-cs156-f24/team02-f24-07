@@ -59,8 +59,12 @@ describe("UCSBOrganizationCreatePage tests", () => {
     await waitFor(() => {
       expect(screen.getByLabelText("Organization Code")).toBeInTheDocument();
     });
-    expect(screen.getByLabelText("Short Organization Translation")).toBeInTheDocument();
-    expect(screen.getByLabelText("Organization Translation")).toBeInTheDocument();
+    expect(
+      screen.getByLabelText("Short Organization Translation"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByLabelText("Organization Translation"),
+    ).toBeInTheDocument();
     expect(screen.getByLabelText("Inactive")).toBeInTheDocument();
   });
 
@@ -91,7 +95,9 @@ describe("UCSBOrganizationCreatePage tests", () => {
     expect(codeInput).toBeInTheDocument();
     const translationInput = screen.getByLabelText("Organization Translation");
     expect(translationInput).toBeInTheDocument();
-    const shortTranslationInput = screen.getByLabelText("Short Organization Translation");
+    const shortTranslationInput = screen.getByLabelText(
+      "Short Organization Translation",
+    );
     expect(shortTranslationInput).toBeInTheDocument();
     const inactiveInput = screen.getByLabelText("Inactive");
     expect(inactiveInput).toBeInTheDocument();
@@ -100,7 +106,9 @@ describe("UCSBOrganizationCreatePage tests", () => {
     expect(createButton).toBeInTheDocument();
 
     fireEvent.change(codeInput, { target: { value: "osli" } });
-    fireEvent.change(translationInput, { target: { value: "OFFICE OF STUDENT LIFE" } });
+    fireEvent.change(translationInput, {
+      target: { value: "OFFICE OF STUDENT LIFE" },
+    });
     fireEvent.change(shortTranslationInput, { target: { value: "STUD LIFE" } });
     fireEvent.click(inactiveInput);
     fireEvent.click(createButton);
