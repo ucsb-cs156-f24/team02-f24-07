@@ -100,9 +100,9 @@ describe("UCSBOrganizationCreatePage tests", () => {
     expect(createButton).toBeInTheDocument();
 
     fireEvent.change(codeInput, { target: { value: "osli" } });
-    fireEvent.change(translationInput, { target: { value: "STUD LIFE" } });
-    fireEvent.change(shortTranslationInput, { target: { value: "OFFICE OF STUDENT LIFE" } });
-    fireEvent.change(inactiveInput, { target: { value: true } });
+    fireEvent.change(translationInput, { target: { value: "OFFICE OF STUDENT LIFE" } });
+    fireEvent.change(shortTranslationInput, { target: { value: "STUD LIFE" } });
+    fireEvent.click(inactiveInput);
     fireEvent.click(createButton);
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
