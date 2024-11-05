@@ -21,20 +21,6 @@ function OrganizationForm({
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
-      {initialContents && (
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="id">Id</Form.Label>
-          <Form.Control
-            data-testid={testIdPrefix + "-id"}
-            id="id"
-            type="text"
-            {...register("id")}
-            value={initialContents.id}
-            disabled
-          />
-        </Form.Group>
-      )}
-
       <Form.Group className="mb-3">
         <Form.Label htmlFor="orgCode">Organization Code</Form.Label>
         <Form.Control
@@ -49,6 +35,8 @@ function OrganizationForm({
               message: "Max length 30 characters",
             },
           })}
+          value={initialContents?.orgCode}
+          disabled={typeof initialContents !== typeof undefined}
         />
         <Form.Control.Feedback type="invalid">
           {errors.orgCode?.message}
