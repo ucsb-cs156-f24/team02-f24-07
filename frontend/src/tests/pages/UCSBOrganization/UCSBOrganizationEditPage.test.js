@@ -48,7 +48,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/ucsborganization", { params: { orgCode: "ACM" } }).timeout();
+      axiosMock
+        .onGet("/api/ucsborganization", { params: { orgCode: "ACM" } })
+        .timeout();
     });
 
     const queryClient = new QueryClient();
@@ -63,7 +65,9 @@ describe("UCSBOrganizationEditPage tests", () => {
         </QueryClientProvider>,
       );
       await screen.findByText("Edit Organization");
-      expect(screen.queryByTestId("Organization-orgCode")).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId("Organization-orgCode"),
+      ).not.toBeInTheDocument();
       restoreConsole();
     });
   });
@@ -80,18 +84,20 @@ describe("UCSBOrganizationEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/ucsborganization", { params: { orgCode: "ACM" } }).reply(200, {
-        orgCode: "ACM",
-        orgTranslationShort: "ACM",
-        orgTranslation: "ACM @ UCSB",
-        inactive: false,
-      });
+      axiosMock
+        .onGet("/api/ucsborganization", { params: { orgCode: "ACM" } })
+        .reply(200, {
+          orgCode: "ACM",
+          orgTranslationShort: "ACM",
+          orgTranslation: "ACM @ UCSB",
+          inactive: false,
+        });
       axiosMock.onPut("/api/ucsborganization").reply(200, {
         orgCode: "ACM",
         orgTranslationShort: "acm",
         orgTranslation: "ACM UCSB",
         inactive: true,
-      },);
+      });
     });
 
     const queryClient = new QueryClient();
@@ -108,7 +114,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       await screen.findByTestId("OrganizationForm-orgCode");
 
       const codeField = screen.getByTestId("OrganizationForm-orgCode");
-      const shortTransField = screen.getByTestId("OrganizationForm-orgTranslationShort");
+      const shortTransField = screen.getByTestId(
+        "OrganizationForm-orgTranslationShort",
+      );
       const transField = screen.getByTestId("OrganizationForm-orgTranslation");
       const inactiveField = screen.getByTestId("OrganizationForm-inactive");
       const submitButton = screen.getByTestId("OrganizationForm-submit");
@@ -121,9 +129,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(transField).toHaveValue("ACM @ UCSB");
       expect(inactiveField).toBeInTheDocument();
       expect(inactiveField).not.toBeChecked();
-      
+
       expect(submitButton).toHaveTextContent("Update");
-      
+
       fireEvent.change(shortTransField, {
         target: { value: "acm" },
       });
@@ -131,7 +139,7 @@ describe("UCSBOrganizationEditPage tests", () => {
         target: { value: "ACM UCSB" },
       });
       fireEvent.click(inactiveField);
-      expect(inactiveField).not.toBeChecked();
+      expect(inactiveField).toBeChecked();
 
       fireEvent.click(submitButton);
 
@@ -166,7 +174,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       await screen.findByTestId("OrganizationForm-orgCode");
 
       const codeField = screen.getByTestId("OrganizationForm-orgCode");
-      const shortTransField = screen.getByTestId("OrganizationForm-orgTranslationShort");
+      const shortTransField = screen.getByTestId(
+        "OrganizationForm-orgTranslationShort",
+      );
       const transField = screen.getByTestId("OrganizationForm-orgTranslation");
       const inactiveField = screen.getByTestId("OrganizationForm-inactive");
       const submitButton = screen.getByTestId("OrganizationForm-submit");
