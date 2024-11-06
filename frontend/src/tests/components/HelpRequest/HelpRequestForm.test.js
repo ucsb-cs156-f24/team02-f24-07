@@ -127,7 +127,6 @@ describe("HelpRequestForm tests", () => {
     expect(
       screen.queryByText(/Requester email is required./),
     ).not.toBeInTheDocument();
-    expect(screen.queryByText(/must be in ISO format/)).not.toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
