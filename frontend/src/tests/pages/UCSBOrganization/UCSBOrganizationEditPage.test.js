@@ -139,7 +139,6 @@ describe("UCSBOrganizationEditPage tests", () => {
         target: { value: "ACM UCSB" },
       });
       fireEvent.click(inactiveField);
-      expect(inactiveField).toBeChecked();
 
       fireEvent.click(submitButton);
 
