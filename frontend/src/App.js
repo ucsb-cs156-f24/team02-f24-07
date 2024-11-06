@@ -3,6 +3,10 @@ import HomePage from "main/pages/HomePage";
 import ProfilePage from "main/pages/ProfilePage";
 import AdminUsersPage from "main/pages/AdminUsersPage";
 
+import ArticleIndexPage from "main/pages/Articles/ArticleIndexPage";
+import ArticleCreatePage from "main/pages/Articles/ArticleCreatePage";
+import ArticleEditPage from "main/pages/Articles/ArticleEditPage";
+
 import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
 import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
@@ -10,6 +14,10 @@ import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
+
+import HelpRequestIndexPage from "main/pages/HelpRequests/HelpRequestIndexPage";
+import HelpRequestCreatePage from "main/pages/HelpRequests/HelpRequestCreatePage";
+import HelpRequestEditPage from "main/pages/HelpRequests/HelpRequestEditPage";
 
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
@@ -34,6 +42,25 @@ function App() {
         <Route exact path="/profile" element={<ProfilePage />} />
         {hasRole(currentUser, "ROLE_ADMIN") && (
           <Route exact path="/admin/users" element={<AdminUsersPage />} />
+        )}
+        {hasRole(currentUser, "ROLE_USER") && (
+          <>
+            <Route exact path="/articles" element={<ArticleIndexPage />} />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_ADMIN") && (
+          <>
+            <Route
+              exact
+              path="/articles/edit/:id"
+              element={<ArticleEditPage />}
+            />
+            <Route
+              exact
+              path="/articles/create"
+              element={<ArticleCreatePage />}
+            />
+          </>
         )}
         {hasRole(currentUser, "ROLE_USER") && (
           <>
@@ -74,6 +101,29 @@ function App() {
               exact
               path="/restaurants/create"
               element={<RestaurantCreatePage />}
+            />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_USER") && (
+          <>
+            <Route
+              exact
+              path="/helprequests"
+              element={<HelpRequestIndexPage />}
+            />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_ADMIN") && (
+          <>
+            <Route
+              exact
+              path="/helprequests/edit/:id"
+              element={<HelpRequestEditPage />}
+            />
+            <Route
+              exact
+              path="/helprequests/create"
+              element={<HelpRequestCreatePage />}
             />
           </>
         )}

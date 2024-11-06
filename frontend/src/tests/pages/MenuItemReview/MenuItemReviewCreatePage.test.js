@@ -74,7 +74,6 @@ describe("MenuItemReviewCreatePage tests", () => {
     };
 
     axiosMock.onPost("/api/menuitemreview/post").reply(202, menuItemReview);
-
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
