@@ -22,7 +22,7 @@ export default function HelpRequestEditPage({ storybook = false }) {
       params: {
         id,
       },
-    }
+    },
   );
 
   const objectToAxiosPutParams = (helpRequest) => ({
@@ -43,7 +43,7 @@ export default function HelpRequestEditPage({ storybook = false }) {
 
   const onSuccess = (helpRequest) => {
     toast(
-      `Help Request Updated - id: ${helpRequest.id} team: ${helpRequest.teamId}`
+      `Help Request Updated - id: ${helpRequest.id} team: ${helpRequest.teamId}`,
     );
   };
 
@@ -51,7 +51,7 @@ export default function HelpRequestEditPage({ storybook = false }) {
     objectToAxiosPutParams,
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
-    [`/api/helprequests?id=${id}`]
+    [`/api/helprequests?id=${id}`],
   );
 
   const { isSuccess } = mutation;
