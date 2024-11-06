@@ -27,7 +27,7 @@ Default.parameters = {
       });
     }),
     http.get("/api/ucsbdiningcommonsmenuitems", () => {
-      return HttpResponse.json(ucsbDiningCommonsMenuItemFixtures.threeDCMI[0], {
+      return HttpResponse.json(ucsbDiningCommonsMenuItemFixtures.threeUcsbDiningCommonsMenuItems[0], {
         status: 200,
       });
     }),

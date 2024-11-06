@@ -146,7 +146,7 @@ describe("UserTable tests", () => {
 
     await waitFor(() =>
       expect(mockedNavigate).toHaveBeenCalledWith(
-        "/ucsbDiningCommonsMenuItem/edit/1",
+        "/ucsbdiningcommonsmenuitems/edit/1",
       ),
     );
   });
@@ -157,7 +157,7 @@ describe("UserTable tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
     axiosMock
-      .onDelete("/api/ucsbDiningCommonsMenuItem")
+      .onDelete("/api/ucsbdiningcommonsmenuitems")
       .reply(200, { message: "DiningCommonsMenuItem deleted" });
 
     // act - render the component
