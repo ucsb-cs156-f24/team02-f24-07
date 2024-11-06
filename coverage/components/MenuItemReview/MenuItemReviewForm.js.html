@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/Articles/ArticleForm.js</title>
+    <title>Code coverage report for components/MenuItemReview/MenuItemReviewForm.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/Articles</a> ArticleForm.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/MenuItemReview</a> MenuItemReviewForm.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -218,7 +218,9 @@
 <a name='L153'></a><a href='#L153'>153</a>
 <a name='L154'></a><a href='#L154'>154</a>
 <a name='L155'></a><a href='#L155'>155</a>
-<a name='L156'></a><a href='#L156'>156</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,13 +241,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -377,7 +381,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 &nbsp;
-function ArticleForm({
+function MenuItemReviewForm({
   initialContents,
   submitAction,
   buttonLabel = "Create",
@@ -392,9 +396,6 @@ function ArticleForm({
 &nbsp;
   const navigate = useNavigate();
 &nbsp;
-  // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
-  // Note that even this complex regex may still need some tweaks
-&nbsp;
   // Stryker disable Regex
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
@@ -408,7 +409,7 @@ function ArticleForm({
             &lt;Form.Group className="mb-3"&gt;
               &lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
               &lt;Form.Control
-                data-testid="ArticleForm-id"
+                data-testid="MenuItemReviewForm-id"
                 id="id"
                 type="text"
                 {...register("id")}
@@ -421,36 +422,94 @@ function ArticleForm({
 &nbsp;
         &lt;Col&gt;
           &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="title"&gt;Title&lt;/Form.Label&gt;
+            &lt;Form.Label htmlFor="itemId"&gt;Item ID&lt;/Form.Label&gt;
             &lt;Form.Control
-              data-testid="ArticleForm-title"
-              id="title"
+              data-testid="MenuItemReviewForm-itemId"
+              id="itemId"
               type="text"
-              isInvalid={Boolean(errors.dateAdded)}
-              {...register("title", {
-                required: "Title is required.",
+              isInvalid={Boolean(errors.itemID)}
+              {...register("itemId", {
+                required: "itemId is required.",
               })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.title?.message}
+              {errors.itemId?.message}
             &lt;/Form.Control.Feedback&gt;
           &lt;/Form.Group&gt;
         &lt;/Col&gt;
+&nbsp;
+        &lt;Row&gt;
+          &lt;Col&gt;
+            &lt;Form.Group className="mb-3"&gt;
+              &lt;Form.Label htmlFor="reviewerEmail"&gt;Reviewer Email&lt;/Form.Label&gt;
+              &lt;Form.Control
+                data-testid="MenuItemReviewForm-reviewerEmail"
+                id="reviewerEmail"
+                type="text"
+                isInvalid={Boolean(errors.name)}
+                {...register("reviewerEmail", {
+                  required: "reviewerEmail is required.",
+                })}
+              /&gt;
+              &lt;Form.Control.Feedback type="invalid"&gt;
+                {errors.reviewerEmail?.message}
+              &lt;/Form.Control.Feedback&gt;
+            &lt;/Form.Group&gt;
+          &lt;/Col&gt;
+        &lt;/Row&gt;
+&nbsp;
         &lt;Col&gt;
           &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="dateAdded"&gt;Date Added (iso format)&lt;/Form.Label&gt;
+            &lt;Form.Label htmlFor="stars"&gt;Stars&lt;/Form.Label&gt;
             &lt;Form.Control
-              data-testid="ArticleForm-dateAdded"
-              id="dateAdded"
+              data-testid="MenuItemReviewForm-stars"
+              id="stars"
+              type="number"
+              isInvalid={Boolean(errors.stars)}
+              {...register("stars", {
+                required: "stars is required.",
+                min: 1,
+                max: 5,
+              })}
+            /&gt;
+            &lt;Form.Control.Feedback type="invalid"&gt;
+              {errors.stars?.message}
+            &lt;/Form.Control.Feedback&gt;
+          &lt;/Form.Group&gt;
+        &lt;/Col&gt;
+&nbsp;
+        &lt;Col&gt;
+          &lt;Form.Group className="mb-3"&gt;
+            &lt;Form.Label htmlFor="dateReviewed"&gt;Date&lt;/Form.Label&gt;
+            &lt;Form.Control
+              data-testid="MenuItemReviewForm-dateReviewed"
+              id="dateReviewed"
               type="datetime-local"
-              isInvalid={Boolean(errors.dateAdded)}
-              {...register("dateAdded", {
+              isInvalid={Boolean(errors.dateReviewed)}
+              {...register("dateReviewed", {
                 required: true,
                 pattern: isodate_regex,
               })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.dateAdded &amp;&amp; "DateAdded is required."}
+              {errors.dateReviewed &amp;&amp; "dateReviewed is required. "}
+            &lt;/Form.Control.Feedback&gt;
+          &lt;/Form.Group&gt;
+        &lt;/Col&gt;
+        &lt;Col&gt;
+          &lt;Form.Group className="mb-3"&gt;
+            &lt;Form.Label htmlFor="comments"&gt;Comments&lt;/Form.Label&gt;
+            &lt;Form.Control
+              data-testid="MenuItemReviewForm-comments"
+              id="comments"
+              type="text"
+              isInvalid={Boolean(errors.comments)}
+              {...register("comments", {
+                required: "comments is required.",
+              })}
+            /&gt;
+            &lt;Form.Control.Feedback type="invalid"&gt;
+              {errors.comments?.message}
             &lt;/Form.Control.Feedback&gt;
           &lt;/Form.Group&gt;
         &lt;/Col&gt;
@@ -458,66 +517,13 @@ function ArticleForm({
 &nbsp;
       &lt;Row&gt;
         &lt;Col&gt;
-          &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="url"&gt;Url&lt;/Form.Label&gt;
-            &lt;Form.Control
-              data-testid="ArticleForm-url"
-              id="url"
-              type="text"
-              isInvalid={Boolean(errors.url)}
-              {...register("url", {
-                required: "Url is required.",
-              })}
-            /&gt;
-            &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.url?.message}
-            &lt;/Form.Control.Feedback&gt;
-          &lt;/Form.Group&gt;
-        &lt;/Col&gt;
-        &lt;Col&gt;
-          &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="explanation"&gt;Explanation&lt;/Form.Label&gt;
-            &lt;Form.Control
-              data-testid="ArticleForm-explanation"
-              id="explanation"
-              type="text"
-              isInvalid={Boolean(errors.explanation)}
-              {...register("explanation", {
-                required: "Explanation is required.",
-              })}
-            /&gt;
-            &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.explanation?.message}
-            &lt;/Form.Control.Feedback&gt;
-          &lt;/Form.Group&gt;
-        &lt;/Col&gt;
-        &lt;Col&gt;
-          &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="email"&gt;Email&lt;/Form.Label&gt;
-            &lt;Form.Control
-              data-testid="ArticleForm-email"
-              id="email"
-              type="text"
-              isInvalid={Boolean(errors.email)}
-              {...register("email", {
-                required: "Email is required.",
-              })}
-            /&gt;
-            &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.email?.message}
-            &lt;/Form.Control.Feedback&gt;
-          &lt;/Form.Group&gt;
-        &lt;/Col&gt;
-      &lt;/Row&gt;
-      &lt;Row&gt;
-        &lt;Col&gt;
-          &lt;Button type="submit" data-testid="ArticleForm-submit"&gt;
+          &lt;Button type="submit" data-testid="MenuItemReviewForm-submit"&gt;
             {buttonLabel}
           &lt;/Button&gt;
           &lt;Button
             variant="Secondary"
             onClick={() =&gt; navigate(-1)}
-            data-testid="ArticleForm-cancel"
+            data-testid="MenuItemReviewForm-cancel"
           &gt;
             Cancel
           &lt;/Button&gt;
@@ -527,7 +533,7 @@ function ArticleForm({
   );
 }
 &nbsp;
-export default ArticleForm;
+export default MenuItemReviewForm;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
