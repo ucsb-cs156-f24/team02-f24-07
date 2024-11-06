@@ -49,7 +49,8 @@ export default function OrganizationTable({
     },
     {
       Header: "Inactive",
-      accessor: "inactive",
+      id: "inactive",
+      Cell: ({ cell }) => cell.row.original.inactive.toString(),
     },
   ];
 

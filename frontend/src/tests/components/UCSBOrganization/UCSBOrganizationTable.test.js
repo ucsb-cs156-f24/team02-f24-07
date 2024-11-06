@@ -141,6 +141,14 @@ describe("OrganizationTable tests", () => {
       screen.getByTestId(`${testId}-cell-row-1-col-orgCode`),
     ).toHaveTextContent("osli");
 
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-inactive`),
+    ).toHaveTextContent("false");
+
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-inactive`),
+    ).toHaveTextContent("true");
+
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
   });
