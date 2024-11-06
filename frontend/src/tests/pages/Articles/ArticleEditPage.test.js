@@ -64,9 +64,7 @@ describe("ArticleEditPage tests", () => {
         </QueryClientProvider>,
       );
       await screen.findByText("Edit Article");
-      expect(
-        screen.queryByTestId("ArticleForm-title"),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId("ArticleForm-title")).not.toBeInTheDocument();
       restoreConsole();
     });
   });
@@ -89,7 +87,7 @@ describe("ArticleEditPage tests", () => {
         url: "https://website.com",
         explanation: "Something has happened",
         email: "someone@website.com",
-        dateAdded: "2022-12-25T15:00"
+        dateAdded: "2022-12-25T15:00",
       });
       axiosMock.onPut("/api/articles").reply(200, {
         id: "17",
@@ -97,7 +95,7 @@ describe("ArticleEditPage tests", () => {
         url: "https://news.com",
         explanation: "Nothing has happened",
         email: "noone@news.com",
-        dateAdded: "2022-12-25T08:00"
+        dateAdded: "2022-12-25T08:00",
       });
     });
 
@@ -130,9 +128,7 @@ describe("ArticleEditPage tests", () => {
       const urlField = screen.getByTestId("ArticleForm-url");
       const emailField = screen.getByTestId("ArticleForm-email");
       const explanationField = screen.getByTestId("ArticleForm-explanation");
-      const dateAddedField = screen.getByTestId(
-        "ArticleForm-dateAdded",
-      );
+      const dateAddedField = screen.getByTestId("ArticleForm-dateAdded");
       const submitButton = screen.getByTestId("ArticleForm-submit");
 
       expect(idField).toHaveValue("17");
@@ -160,9 +156,7 @@ describe("ArticleEditPage tests", () => {
       const urlField = screen.getByTestId("ArticleForm-url");
       const emailField = screen.getByTestId("ArticleForm-email");
       const explanationField = screen.getByTestId("ArticleForm-explanation");
-      const dateAddedField = screen.getByTestId(
-        "ArticleForm-dateAdded",
-      );
+      const dateAddedField = screen.getByTestId("ArticleForm-dateAdded");
       const submitButton = screen.getByTestId("ArticleForm-submit");
 
       expect(idField).toHaveValue("17");
@@ -175,7 +169,9 @@ describe("ArticleEditPage tests", () => {
 
       fireEvent.change(titleField, { target: { value: "Normal News" } });
       fireEvent.change(urlField, { target: { value: "https://news.com" } });
-      fireEvent.change(explanationField, { target: { value: "Nothing has happened" } });
+      fireEvent.change(explanationField, {
+        target: { value: "Nothing has happened" },
+      });
       fireEvent.change(emailField, { target: { value: "noone@news.com" } });
       fireEvent.change(dateAddedField, {
         target: { value: "2022-12-25T08:00" },
@@ -197,7 +193,7 @@ describe("ArticleEditPage tests", () => {
           url: "https://news.com",
           explanation: "Nothing has happened",
           email: "noone@news.com",
-          dateAdded: "2022-12-25T08:00"
+          dateAdded: "2022-12-25T08:00",
         }),
       ); // posted object
     });
