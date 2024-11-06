@@ -1,7 +1,7 @@
 import {
   onDeleteSuccess,
   cellToAxiosParamsDelete,
-} from "main/utils/RecommendationRequestUtils";
+} from "main/utils/UCSBOrganizationUtils";
 import mockConsole from "jest-mock-console";
 
 const mockToast = jest.fn();
@@ -14,7 +14,7 @@ jest.mock("react-toastify", () => {
   };
 });
 
-describe("RecommendationRequestUtils", () => {
+describe("UCSBOrganizationUtils", () => {
   describe("onDeleteSuccess", () => {
     test("It puts the message on console.log and in a toast", () => {
       // arrange
@@ -35,16 +35,16 @@ describe("RecommendationRequestUtils", () => {
   describe("cellToAxiosParamsDelete", () => {
     test("It returns the correct params", () => {
       // arrange
-      const cell = { row: { values: { id: 17 } } };
+      const cell = { row: { values: { orgCode: "ACM" } } };
 
       // act
       const result = cellToAxiosParamsDelete(cell);
 
       // assert
       expect(result).toEqual({
-        url: "/api/recommendationrequest",
+        url: "/api/ucsborganization",
         method: "DELETE",
-        params: { id: 17 },
+        params: { orgCode: "ACM" },
       });
     });
   });

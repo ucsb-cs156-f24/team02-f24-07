@@ -1,7 +1,7 @@
 import {
   onDeleteSuccess,
   cellToAxiosParamsDelete,
-} from "main/utils/RecommendationRequestUtils";
+} from "main/utils/articleUtils";
 import mockConsole from "jest-mock-console";
 
 const mockToast = jest.fn();
@@ -14,7 +14,7 @@ jest.mock("react-toastify", () => {
   };
 });
 
-describe("RecommendationRequestUtils", () => {
+describe("articleUtils", () => {
   describe("onDeleteSuccess", () => {
     test("It puts the message on console.log and in a toast", () => {
       // arrange
@@ -42,7 +42,7 @@ describe("RecommendationRequestUtils", () => {
 
       // assert
       expect(result).toEqual({
-        url: "/api/recommendationrequest",
+        url: "/api/articles",
         method: "DELETE",
         params: { id: 17 },
       });

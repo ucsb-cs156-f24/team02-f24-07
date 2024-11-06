@@ -38,6 +38,8 @@ describe("OrganizationForm tests", () => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
     });
+
+    expect(await screen.findByTestId(`${testId}-orgCode`)).not.toBeDisabled();
   });
 
   test("renders correctly when passing in initialContents", async () => {
@@ -58,12 +60,11 @@ describe("OrganizationForm tests", () => {
       expect(header).toBeInTheDocument();
     });
 
+    expect(await screen.findByTestId(`${testId}-orgCode`)).toBeDisabled();
     expect(await screen.findByTestId(`${testId}-inactive`)).toBeInTheDocument();
     expect(
       await screen.findByTestId(`${testId}-orgTranslation`),
     ).toBeInTheDocument();
-    expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
-    expect(screen.getByText(`Id`)).toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
