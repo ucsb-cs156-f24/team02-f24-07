@@ -10,7 +10,7 @@ export default function UCSBOrganizationIndexPage() {
   const currentUser = useCurrentUser();
 
   const {
-    data: restaurants,
+    data: organizations,
     error: _error,
     status: _status,
   } = useBackend(
@@ -41,7 +41,7 @@ export default function UCSBOrganizationIndexPage() {
         {createButton()}
         <h1>Organizations</h1>
         <OrganizationTable
-          organizations={restaurants}
+          organizations={organizations}
           currentUser={currentUser}
         />
       </div>
