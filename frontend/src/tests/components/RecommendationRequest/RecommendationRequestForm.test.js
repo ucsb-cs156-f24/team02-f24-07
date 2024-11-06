@@ -29,7 +29,7 @@ describe("RecommendationRequestForm tests", () => {
   test("renders correctly when passing in a Recommendation Request", async () => {
     render(
       <Router>
-        <RecommendationRequestForm initialContents={recommendationRequestFixtures.oneDate} />
+        <RecommendationRequestForm initialContents={recommendationRequestFixtures.oneRequest} />
       </Router>,
     );
     await screen.findByTestId(/RecommendationRequestForm-id/);
@@ -57,7 +57,7 @@ describe("RecommendationRequestForm tests", () => {
     fireEvent.change(explanationField, { target: { value: "bad-input" } });
     fireEvent.change(dateRequestedField, { target: { value: "bad-input" } });
     fireEvent.change(dateNeededField, { target: { value: "bad-input" } });
-    fireEvent.click(doneField);
+    fireEvent.change(doneField, { target: { value: "bad-input" } });
     fireEvent.click(submitButton);
 
   });
@@ -91,12 +91,20 @@ describe("RecommendationRequestForm tests", () => {
     );
     await screen.findByTestId("RecommendationRequestForm-requesterEmail");
 
+    const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
+    const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
+    const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
     const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
     const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
+    const doneField = screen.getByTestId("RecommendationRequestForm-done");
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-    fireEvent.change(dateRequestedField, { target: { value: "lol" } });
-    fireEvent.change(dateNeededField, { target: { value: "lol" } });
+    fireEvent.change(requesterEmailField, { target: { value: "lol" } });
+    fireEvent.change(professorEmailField, { target: { value: "lol" } });
+    fireEvent.change(explanationField, { target: { value: "lol" } });
+    fireEvent.change(dateRequestedField, { target: { value: "2022-04-20T00:00:00" } });
+    fireEvent.change(dateNeededField, { target: { value: "2022-04-20T00:00:00" } });
+    fireEvent.change(doneField, { target: { value: "lol" } });
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());

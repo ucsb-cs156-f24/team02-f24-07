@@ -26,7 +26,7 @@ function RecommendationRequestForm ({
   // Stryker restore Regex
 
   // Stryker disable next-line all
-  const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
+  // const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -151,12 +151,14 @@ function RecommendationRequestForm ({
             <Form.Control
               data-testid="RecommendationRequestForm-done"
               id="done"
-              type="checkbox"
+              type="text"
               isInvalid={Boolean(errors.done)}
-              {...register("done", {})}
+              {...register("done", {
+                required: true
+              })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.done?.message}
+              {errors.done && "Done is required. "}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
