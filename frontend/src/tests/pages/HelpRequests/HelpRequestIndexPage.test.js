@@ -1,11 +1,11 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import MenuItemReviewIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
+import HelpRequestIndexPage from "main/pages/HelpRequests/HelpRequestIndexPage";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
+import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import mockConsole from "jest-mock-console";
@@ -20,10 +20,11 @@ jest.mock("react-toastify", () => {
   };
 });
 
-describe("MenuItemReviewIndexPage tests", () => {
+describe("HelpRequestIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
-  const testId = "MenuItemReviewTable";
+  const testId = "HelpRequestsTable";
+
   const setupUserOnly = () => {
     axiosMock.reset();
     axiosMock.resetHistory();
@@ -50,39 +51,39 @@ describe("MenuItemReviewIndexPage tests", () => {
     // arrange
     setupAdminUser();
     const queryClient = new QueryClient();
-    axiosMock.onGet("/api/menuitemreview/all").reply(200, []);
+    axiosMock.onGet("/api/helprequests/all").reply(200, []);
 
     // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewIndexPage />
+          <HelpRequestIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
     // assert
     await waitFor(() => {
-      expect(screen.getByText(/Create MenuItemReview/)).toBeInTheDocument();
+      expect(screen.getByText(/Create Help Request/)).toBeInTheDocument();
     });
-    const button = screen.getByText(/Create MenuItemReview/);
-    expect(button).toHaveAttribute("href", "/menuitemreview/create");
+    const button = screen.getByText(/Create Help Request/);
+    expect(button).toHaveAttribute("href", "/helprequests/create");
     expect(button).toHaveAttribute("style", "float: right;");
   });
 
-  test("renders three reviews correctly for regular user", async () => {
+  test("renders three help requests correctly for regular user", async () => {
     // arrange
     setupUserOnly();
     const queryClient = new QueryClient();
     axiosMock
-      .onGet("/api/menuitemreview/all")
-      .reply(200, menuItemReviewFixtures.threeReviews);
+      .onGet("/api/helprequests/all")
+      .reply(200, helpRequestFixtures.threeHelpRequests);
 
     // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewIndexPage />
+          <HelpRequestIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -101,21 +102,21 @@ describe("MenuItemReviewIndexPage tests", () => {
     );
 
     // assert that the Create button is not present when user isn't an admin
-    expect(screen.queryByText(/Create MenuItemReview/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Create Help Request/)).not.toBeInTheDocument();
   });
 
   test("renders empty table when backend unavailable, user only", async () => {
     // arrange
     setupUserOnly();
     const queryClient = new QueryClient();
-    axiosMock.onGet("/api/menuitemreview/all").timeout();
+    axiosMock.onGet("/api/helprequests/all").timeout();
     const restoreConsole = mockConsole();
 
     // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewIndexPage />
+          <HelpRequestIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -127,7 +128,7 @@ describe("MenuItemReviewIndexPage tests", () => {
 
     const errorMessage = console.error.mock.calls[0][0];
     expect(errorMessage).toMatch(
-      "Error communicating with backend via GET on /api/menuitemreview/all",
+      "Error communicating with backend via GET on /api/helprequests/all",
     );
     restoreConsole();
 
@@ -141,17 +142,17 @@ describe("MenuItemReviewIndexPage tests", () => {
     setupAdminUser();
     const queryClient = new QueryClient();
     axiosMock
-      .onGet("/api/menuitemreview/all")
-      .reply(200, menuItemReviewFixtures.threeReviews);
+      .onGet("/api/helprequests/all")
+      .reply(200, helpRequestFixtures.threeHelpRequests);
     axiosMock
-      .onDelete("/api/menuitemreview")
-      .reply(200, "MenuItemReview with id 1 was deleted");
+      .onDelete("/api/helprequests")
+      .reply(200, "Help Request with id 1 was deleted");
 
     // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewIndexPage />
+          <HelpRequestIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -177,7 +178,7 @@ describe("MenuItemReviewIndexPage tests", () => {
 
     // assert
     await waitFor(() => {
-      expect(mockToast).toBeCalledWith("MenuItemReview with id 1 was deleted");
+      expect(mockToast).toBeCalledWith("Help Request with id 1 was deleted");
     });
   });
 });
