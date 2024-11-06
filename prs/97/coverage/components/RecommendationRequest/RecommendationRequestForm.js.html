@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.21% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>16/19</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -242,11 +242,7 @@
 <a name='L177'></a><a href='#L177'>177</a>
 <a name='L178'></a><a href='#L178'>178</a>
 <a name='L179'></a><a href='#L179'>179</a>
-<a name='L180'></a><a href='#L180'>180</a>
-<a name='L181'></a><a href='#L181'>181</a>
-<a name='L182'></a><a href='#L182'>182</a>
-<a name='L183'></a><a href='#L183'>183</a>
-<a name='L184'></a><a href='#L184'>184</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L180'></a><a href='#L180'>180</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -270,17 +266,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -433,7 +425,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 &nbsp;
-function RecommendationRequestForm ({
+function RecommendationRequestForm({
   initialContents,
   submitAction,
   buttonLabel = "Create",
@@ -452,18 +444,18 @@ function RecommendationRequestForm ({
   // Note that even this complex regex may still need some tweaks
 &nbsp;
   // Stryker disable Regex
-  const isodate_regex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+  // const isodate_regex =
+  //   /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
   // Stryker restore Regex
 &nbsp;
   // Stryker disable next-line all
-  const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
+  // const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
 &nbsp;
   return (
     &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
       &lt;Row&gt;
         {initialContents &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >          &lt;Col&gt;</span>
+          &lt;Col&gt;
             &lt;Form.Group className="mb-3"&gt;
               &lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
               &lt;Form.Control
@@ -487,7 +479,7 @@ function RecommendationRequestForm ({
               type="text"
               isInvalid={Boolean(errors.requesterEmail)}
               {...register("requesterEmail", {
-                required: true
+                required: true,
               })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
@@ -505,7 +497,7 @@ function RecommendationRequestForm ({
               type="text"
               isInvalid={Boolean(errors.professorEmail)}
               {...register("professorEmail", {
-                required: true
+                required: true,
               })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
@@ -544,13 +536,10 @@ function RecommendationRequestForm ({
               isInvalid={Boolean(errors.dateRequested)}
               {...register("dateRequested", {
                 required: "Date Requested is required.",
-                pattern: isodate_regex
               })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.dateRequested &amp;&amp; "Date Requested is required. "}
-              {errors.dateRequested?.type === "pattern" &amp;&amp;
-<span class="branch-1 cbranch-no" title="branch not covered" >              "Date Requested must be in the ISO format."}</span>
+              {errors.dateRequested?.message}
             &lt;/Form.Control.Feedback&gt;
           &lt;/Form.Group&gt;
         &lt;/Col&gt;
@@ -565,13 +554,10 @@ function RecommendationRequestForm ({
               isInvalid={Boolean(errors.dateNeeded)}
               {...register("dateNeeded", {
                 required: "Date Needed is required.",
-                pattern: isodate_regex
               })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.dateNeeded &amp;&amp; "Date Needed is required. "}
-              {errors.dateNeeded?.type === "pattern" &amp;&amp;
-<span class="branch-1 cbranch-no" title="branch not covered" >              "Date Needed must be in the ISO format."}</span>
+              {errors.dateNeeded?.message}
             &lt;/Form.Control.Feedback&gt;
           &lt;/Form.Group&gt;
         &lt;/Col&gt;
@@ -582,12 +568,14 @@ function RecommendationRequestForm ({
             &lt;Form.Control
               data-testid="RecommendationRequestForm-done"
               id="done"
-              type="checkbox"
+              type="text"
               isInvalid={Boolean(errors.done)}
-              {...register("done", {})}
+              {...register("done", {
+                required: true,
+              })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.done?.message}
+              {errors.done &amp;&amp; "Done is required. "}
             &lt;/Form.Control.Feedback&gt;
           &lt;/Form.Group&gt;
         &lt;/Col&gt;
@@ -619,7 +607,7 @@ export default RecommendationRequestForm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-06T01:50:56.128Z
+                at 2024-11-06T02:24:38.638Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
