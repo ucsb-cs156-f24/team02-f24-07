@@ -2,7 +2,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-function RecommendationRequestForm ({
+function RecommendationRequestForm({
   initialContents,
   submitAction,
   buttonLabel = "Create",
@@ -21,8 +21,8 @@ function RecommendationRequestForm ({
   // Note that even this complex regex may still need some tweaks
 
   // Stryker disable Regex
-  const isodate_regex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+  // const isodate_regex =
+  //   /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
   // Stryker restore Regex
 
   // Stryker disable next-line all
@@ -56,7 +56,7 @@ function RecommendationRequestForm ({
               type="text"
               isInvalid={Boolean(errors.requesterEmail)}
               {...register("requesterEmail", {
-                required: true
+                required: true,
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -74,7 +74,7 @@ function RecommendationRequestForm ({
               type="text"
               isInvalid={Boolean(errors.professorEmail)}
               {...register("professorEmail", {
-                required: true
+                required: true,
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -113,13 +113,10 @@ function RecommendationRequestForm ({
               isInvalid={Boolean(errors.dateRequested)}
               {...register("dateRequested", {
                 required: "Date Requested is required.",
-                pattern: isodate_regex
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateRequested && "Date Requested is required. "}
-              {errors.dateRequested?.type === "pattern" &&
-              "Date Requested must be in the ISO format."}
+              {errors.dateRequested?.message}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -134,13 +131,10 @@ function RecommendationRequestForm ({
               isInvalid={Boolean(errors.dateNeeded)}
               {...register("dateNeeded", {
                 required: "Date Needed is required.",
-                pattern: isodate_regex
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateNeeded && "Date Needed is required. "}
-              {errors.dateNeeded?.type === "pattern" &&
-              "Date Needed must be in the ISO format."}
+              {errors.dateNeeded?.message}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -154,7 +148,7 @@ function RecommendationRequestForm ({
               type="text"
               isInvalid={Boolean(errors.done)}
               {...register("done", {
-                required: true
+                required: true,
               })}
             />
             <Form.Control.Feedback type="invalid">
