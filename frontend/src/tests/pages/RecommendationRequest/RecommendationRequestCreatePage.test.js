@@ -71,10 +71,12 @@ describe("RecommendationRequestCreatePage tests", () => {
       explanation: "lol",
       dateRequested: "2022-04-20T00:00",
       dateNeeded: "2022-04-20T00:00",
-      done: "lol"
+      done: "lol",
     };
 
-    axiosMock.onPost("/api/recommendationrequest/post").reply(202, recommendationRequest);
+    axiosMock
+      .onPost("/api/recommendationrequest/post")
+      .reply(202, recommendationRequest);
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -90,11 +92,21 @@ describe("RecommendationRequestCreatePage tests", () => {
       ).toBeInTheDocument();
     });
 
-    const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
-    const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
-    const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
-    const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
-    const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
+    const requesterEmailField = screen.getByTestId(
+      "RecommendationRequestForm-requesterEmail",
+    );
+    const professorEmailField = screen.getByTestId(
+      "RecommendationRequestForm-professorEmail",
+    );
+    const explanationField = screen.getByTestId(
+      "RecommendationRequestForm-explanation",
+    );
+    const dateRequestedField = screen.getByTestId(
+      "RecommendationRequestForm-dateRequested",
+    );
+    const dateNeededField = screen.getByTestId(
+      "RecommendationRequestForm-dateNeeded",
+    );
     const doneField = screen.getByTestId("RecommendationRequestForm-done");
 
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
@@ -122,7 +134,7 @@ describe("RecommendationRequestCreatePage tests", () => {
       explanation: "lol",
       dateRequested: "2022-04-20T00:00",
       dateNeeded: "2022-04-20T00:00",
-      done: "lol"
+      done: "lol",
     });
 
     expect(mockToast).toBeCalledWith(

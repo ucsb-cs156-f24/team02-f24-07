@@ -14,12 +14,14 @@ export default function RecommendationRequestCreatePage({ storybook = false }) {
       explanation: recommendationRequest.explanation,
       dateRequested: recommendationRequest.dateRequested,
       dateNeeded: recommendationRequest.dateNeeded,
-      done: recommendationRequest.done
+      done: recommendationRequest.done,
     },
   });
 
   const onSuccess = (recommendationRequest) => {
-    toast(`New recommendationRequest Created - id: ${recommendationRequest.id} requester: ${recommendationRequest.requesterEmail}`);
+    toast(
+      `New recommendationRequest Created - id: ${recommendationRequest.id} requester: ${recommendationRequest.requesterEmail}`,
+    );
   };
 
   const mutation = useBackendMutation(
