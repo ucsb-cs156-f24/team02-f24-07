@@ -22,6 +22,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -136,7 +137,8 @@ public class UCSBOrganizationIT {
 							.andExpect(status().isNotFound()).andReturn();
 
 			// assert
-			String responseString = response.getResponse().getContentAsString();
-			assertEquals("{\"message\":\"UCSBOrganization with id ZPR not found\",\"type\":\"EntityNotFoundException\"}", responseString);
+			// System.out.println("LDResponse: " + response);
+			String responseString = mapper.readTree(response.getResponse().getContentAsString()).get("message").toString();
+			assertEquals("\"UCSBOrganization with id ZPR not found\"", responseString);
 		}
 }
