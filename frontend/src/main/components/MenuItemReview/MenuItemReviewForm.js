@@ -48,7 +48,7 @@ function MenuItemReviewForm({
               data-testid="MenuItemReviewForm-itemId"
               id="itemId"
               type="text"
-              isInvalid={Boolean(errors.itemID)}
+              isInvalid={Boolean(errors.itemId)}
               {...register("itemId", {
                 required: "itemId is required.",
               })}
@@ -67,7 +67,7 @@ function MenuItemReviewForm({
                 data-testid="MenuItemReviewForm-reviewerEmail"
                 id="reviewerEmail"
                 type="text"
-                isInvalid={Boolean(errors.name)}
+                isInvalid={Boolean(errors.reviewerEmail)}
                 {...register("reviewerEmail", {
                   required: "reviewerEmail is required.",
                 })}
@@ -81,7 +81,7 @@ function MenuItemReviewForm({
 
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="stars">Stars</Form.Label>
+            <Form.Label htmlFor="stars">Stars (1-5)</Form.Label>
             <Form.Control
               data-testid="MenuItemReviewForm-stars"
               id="stars"
@@ -89,8 +89,8 @@ function MenuItemReviewForm({
               isInvalid={Boolean(errors.stars)}
               {...register("stars", {
                 required: "stars is required.",
-                min: 1,
-                max: 5,
+                min: { value: 1, message: "Stars must be between 1 and 5." },
+                max: { value: 5, message: "Stars must be between 1 and 5." },
               })}
             />
             <Form.Control.Feedback type="invalid">
