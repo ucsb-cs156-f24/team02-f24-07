@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import { useBackend, useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
-export default function RecommendationRequestEditPage() {
+export default function RecommendationRequestEditPage({ storybook = false }) {
   let { id } = useParams();
 
   const {
@@ -25,7 +25,7 @@ export default function RecommendationRequestEditPage() {
     },
   );
 
-  const objectToAxiosPutParams = (ucsbDate) => ({
+  const objectToAxiosPutParams = (recommendationRequest) => ({
     url: "/api/recommendationrequest",
     method: "PUT",
     params: {
@@ -68,7 +68,7 @@ export default function RecommendationRequestEditPage() {
     <BasicLayout>
       <div className="pt-2">
         <h1>Edit RecommendationRequest</h1>
-        {ucsbDate && (
+        {recommendationRequest && (
           <RecommendationRequestForm
             initialContents={recommendationRequest}
             submitAction={onSubmit}

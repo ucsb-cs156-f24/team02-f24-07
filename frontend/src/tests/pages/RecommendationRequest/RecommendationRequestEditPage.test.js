@@ -27,7 +27,7 @@ jest.mock("react-router-dom", () => {
     __esModule: true,
     ...originalModule,
     useParams: () => ({
-      id: 17,
+      id: 1,
     }),
     Navigate: (x) => {
       mockNavigate(x);
@@ -50,7 +50,7 @@ describe("RecommendationRequestEditPage tests", () => {
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
       axiosMock
-        .onGet("/api/recommendationrequest", { params: { id: 17 } })
+        .onGet("/api/recommendationrequest", { params: { id: 1 } })
         .timeout();
     });
 
