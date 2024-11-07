@@ -48,12 +48,24 @@ describe("MenuItemReviewForm tests", () => {
     const dateReviewedField = screen.getByTestId(
       "MenuItemReviewForm-dateReviewed",
     );
+    const starsField = screen.getByTestId("MenuItemReviewForm-stars");
     const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
 
     fireEvent.change(dateReviewedField, { target: { value: "bad-input" } });
+    fireEvent.change(starsField, { target: { value: 100 } });
+
     fireEvent.click(submitButton);
 
     await screen.findByText(/dateReviewed is required./);
+    await screen.findByText(/Stars must be between 1 and 5./);
+
+    fireEvent.change(starsField, { target: { value: 0 } });
+    fireEvent.click(submitButton);
+    await screen.findByText(/Stars must be between 1 and 5./);
+
+    fireEvent.change(starsField, { target: { value: "" } });
+    fireEvent.click(submitButton);
+    await screen.findByText(/Stars must be between 1 and 5./);
   });
 
   test("Correct Error messsages on missing input", async () => {
@@ -119,6 +131,10 @@ describe("MenuItemReviewForm tests", () => {
       screen.queryByText(/reviewerEmail is required./),
     ).not.toBeInTheDocument();
     expect(screen.queryByText(/comments is required./)).not.toBeInTheDocument();
+    expect(screen.queryByText(/stars is required./)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Stars must be between 1 and 5./),
+    ).not.toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
