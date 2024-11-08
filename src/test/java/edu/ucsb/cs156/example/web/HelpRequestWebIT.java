@@ -25,26 +25,26 @@ public class HelpRequestWebIT extends WebTestCase {
 
 
         page.getByText("Create Help Request").click();
-        assertThat(page.getByText("Create Help Request")).isVisible();
+        assertThat(page.getByText("Create New Help Request")).isVisible();
         page.getByTestId("HelpRequestForm-requesterEmail").fill("john@gmail.com");
         page.getByTestId("HelpRequestForm-teamId").fill("02");
         page.getByTestId("HelpRequestForm-tableOrBreakoutRoom").fill("table");
-        page.getByTestId("HelpRequestForm-requestTime").fill("2022-01-02T12:00:00");
+        page.getByTestId("HelpRequestForm-requestTime").fill("2022-01-02T12:00");
         page.getByTestId("HelpRequestForm-explanation").fill("need helps");
         page.getByTestId("HelpRequestForm-solved").check();
         page.getByTestId("HelpRequestForm-submit").click();
 
-        assertThat(page.getByTestId("HelpRequestTable-cell-row-0-col-teamId"))
+        assertThat(page.getByTestId("HelpRequestsTable-cell-row-0-col-teamId"))
                 .hasText("02");
 
-        page.getByTestId("HelpRequestTable-cell-row-0-col-Edit-button").click();
+        page.getByTestId("HelpRequestsTable-cell-row-0-col-Edit-button").click();
         assertThat(page.getByText("Edit Help Request")).isVisible();
         page.getByTestId("HelpRequestForm-teamId").fill("04");
         page.getByTestId("HelpRequestForm-submit").click();
 
-        assertThat(page.getByTestId("HelpRequestTable-cell-row-0-col-teamId")).hasText("04");
+        assertThat(page.getByTestId("HelpRequestsTable-cell-row-0-col-teamId")).hasText("04");
 
-        page.getByTestId("HelpRequestTable-cell-row-0-col-Delete-button").click();
+        page.getByTestId("HelpRequestsTable-cell-row-0-col-Delete-button").click();
 
         assertThat(page.getByTestId("HelpRequest-cell-row-0-col-teamId")).not().isVisible();
     }
@@ -56,6 +56,6 @@ public class HelpRequestWebIT extends WebTestCase {
         page.getByText("Help Requests").click();
 
         assertThat(page.getByText("Create Help Request")).not().isVisible();
-        assertThat(page.getByTestId("HelpRequestTable-cell-row-0-col-teamId")).not().isVisible();
+        assertThat(page.getByTestId("HelpRequestsTable-cell-row-0-col-teamId")).not().isVisible();
     }
 }
