@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -29,7 +28,6 @@ import java.time.Month;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import edu.ucsb.cs156.example.entities.HelpRequest;
-import edu.ucsb.cs156.example.entities.Restaurant;
 import edu.ucsb.cs156.example.repositories.HelpRequestRepository;
 import edu.ucsb.cs156.example.repositories.UserRepository;
 import edu.ucsb.cs156.example.services.CurrentUserService;
@@ -65,7 +63,6 @@ public class HelpRequestIT {
         @Test
         public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
                 // arrange
-
                 HelpRequest helpRequest = HelpRequest.builder()
                                 .requesterEmail("adoam@gmail.com")
                                 .teamId("02")
@@ -91,7 +88,6 @@ public class HelpRequestIT {
         @Test
         public void an_admin_user_can_post_a_new_helprequest() throws Exception {
                 // arrange
-
                 HelpRequest helpRequest = HelpRequest.builder()
                 .id(1L)
                 .requesterEmail("adoam2@gmail.com")
@@ -111,7 +107,6 @@ public class HelpRequestIT {
                 // assert
                 String expectedJson = mapper.writeValueAsString(helpRequest);
                 String responseString = response.getResponse().getContentAsString();
-                // responseString = responseString.replace("+", " ");
                 assertEquals(expectedJson, responseString);
         }
 }
