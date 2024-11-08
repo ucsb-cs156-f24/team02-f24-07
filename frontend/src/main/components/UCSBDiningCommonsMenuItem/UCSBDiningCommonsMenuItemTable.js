@@ -17,6 +17,7 @@ export default function UCSBDinngCommonMenuItem({
 
   const editCallback = (cell) => {
     navigate(`/ucsbdiningcommonsmenuitems/edit/${cell.row.values.id}`);
+
   };
 
   // Stryker disable all : hard to test for query caching
