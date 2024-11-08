@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import HelpRequestCreatePage from "main/pages/HelpRequests/HelpRequestCreatePage";
+import UCSBDiningCommonsMenuItemCreatePage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -31,7 +31,7 @@ jest.mock("react-router-dom", () => {
   };
 });
 
-describe("HelpRequestCreatePage tests", () => {
+describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
   beforeEach(() => {
@@ -50,86 +50,77 @@ describe("HelpRequestCreatePage tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestCreatePage />
+          <UCSBDiningCommonsMenuItemCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId("HelpRequestForm-solved")).toBeInTheDocument();
+      expect(
+        screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode"),
+      ).toBeInTheDocument();
     });
   });
 
   test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
     const queryClient = new QueryClient();
-    const helpRequest = {
+    const ucsbDiningCommonsMenuItem = {
       id: 17,
-      requesterEmail: "noahwang1@ucsb.edu",
-      teamId: "07",
-      tableOrBreakoutRoom: "table",
-      requestTime: "2022-01-02T12:00",
-      explanation: "help",
-      solved: false,
+      diningCommonsCode: "ortega",
+      name: "chicken",
+      station: "yummy",
     };
 
-    axiosMock.onPost("/api/helprequests/post").reply(202, helpRequest);
+    axiosMock
+      .onPost("/api/ucsbdiningcommonsmenuitems/post")
+      .reply(202, ucsbDiningCommonsMenuItem);
 
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestCreatePage />
+          <UCSBDiningCommonsMenuItemCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId("HelpRequestForm-solved")).toBeInTheDocument();
+      expect(
+        screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode"),
+      ).toBeInTheDocument();
     });
 
-    const requesterEmailField = screen.getByTestId(
-      "HelpRequestForm-requesterEmail",
+    const diningCommonsCodeField = screen.getByTestId(
+      "UCSBDiningCommonsMenuItemForm-diningCommonsCode",
     );
-    const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-    const tableOrBreakoutRoomField = screen.getByTestId(
-      "HelpRequestForm-tableOrBreakoutRoom",
+    const nameField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-name");
+    const stationField = screen.getByTestId(
+      "UCSBDiningCommonsMenuItemForm-station",
     );
-    const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
-    const explanationField = screen.getByTestId("HelpRequestForm-explanation");
-    const solvedField = screen.getByTestId("HelpRequestForm-solved");
+    const submitButton = screen.getByTestId(
+      "UCSBDiningCommonsMenuItemForm-submit",
+    );
 
-    fireEvent.change(requesterEmailField, {
-      target: { value: "noahwang1@ucsb.edu" },
+    fireEvent.change(diningCommonsCodeField, { target: { value: "ortega" } });
+    fireEvent.change(nameField, { target: { value: "chicken" } });
+    fireEvent.change(stationField, {
+      target: { value: "yummy" },
     });
-    fireEvent.change(teamIdField, { target: { value: "07" } });
-    fireEvent.change(tableOrBreakoutRoomField, {
-      target: { value: "table" },
-    });
-    fireEvent.change(requestTimeField, {
-      target: { value: "2022-01-02T12:00" },
-    });
-    fireEvent.change(explanationField, { target: { value: "help" } });
 
-    fireEvent.click(solvedField);
-    fireEvent.click(solvedField);
-
-    const submitButton = screen.getByTestId("HelpRequestForm-submit");
+    expect(submitButton).toBeInTheDocument();
 
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      requesterEmail: "noahwang1@ucsb.edu",
-      teamId: "07",
-      tableOrBreakoutRoom: "table",
-      requestTime: "2022-01-02T12:00",
-      explanation: "help",
-      solved: false,
+      station: "yummy",
+      name: "chicken",
+      diningCommonsCode: "ortega",
     });
 
     expect(mockToast).toBeCalledWith(
-      "New Help Request Created - id: 17 team: 07",
+      "New ucsbDiningCommonsMenuItem Created - id: 17 name: chicken",
     );
-    expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
+    expect(mockNavigate).toBeCalledWith({ to: "/ucsbDiningCommonsMenuItem" });
   });
 });
