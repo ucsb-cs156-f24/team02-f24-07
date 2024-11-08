@@ -54,7 +54,7 @@ describe("MenuItemReviewCreatePage tests", () => {
         </MemoryRouter>
       </QueryClientProvider>,
     );
-  
+
     await waitFor(() => {
       expect(
         screen.getByTestId("MenuItemReviewForm-dateReviewed"),
