@@ -38,7 +38,7 @@ export default function RecommendationRequestIndexPage() {
     <BasicLayout>
       <div className="pt-2">
         {createButton()}
-        <h1>UCSBDates</h1>
+        <h1>RecommendationRequest</h1>
         <RecommendationRequestTable
           requests={requests}
           currentUser={currentUser}
