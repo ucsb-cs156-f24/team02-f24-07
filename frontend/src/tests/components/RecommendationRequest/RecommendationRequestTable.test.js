@@ -68,13 +68,13 @@ describe("UserTable tests", () => {
       "2",
     );
 
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-done`)).toHaveTextContent(
-      "true",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-done`),
+    ).toHaveTextContent("true");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent(
-      "false",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-done`),
+    ).toHaveTextContent("false");
 
     const editButton = screen.queryByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
