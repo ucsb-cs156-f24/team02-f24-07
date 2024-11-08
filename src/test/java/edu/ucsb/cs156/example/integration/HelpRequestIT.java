@@ -18,13 +18,19 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.time.LocalDateTime;
+import java.time.Month;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
+import edu.ucsb.cs156.example.entities.HelpRequest;
 import edu.ucsb.cs156.example.entities.Restaurant;
-import edu.ucsb.cs156.example.repositories.RestaurantRepository;
+import edu.ucsb.cs156.example.repositories.HelpRequestRepository;
 import edu.ucsb.cs156.example.repositories.UserRepository;
 import edu.ucsb.cs156.example.services.CurrentUserService;
 import edu.ucsb.cs156.example.services.GrantedAuthoritiesService;
@@ -44,7 +50,7 @@ public class HelpRequestIT {
         public GrantedAuthoritiesService grantedAuthoritiesService;
 
         @Autowired
-        RestaurantRepository restaurantRepository;
+        HelpRequestRepository helpRequestRepository;
 
         @Autowired
         public MockMvc mockMvc;
@@ -60,43 +66,52 @@ public class HelpRequestIT {
         public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
                 // arrange
 
-                Restaurant restaurant = Restaurant.builder()
-                                .name("Taco Bell")
-                                .description("Mexican")
+                HelpRequest helpRequest = HelpRequest.builder()
+                                .requesterEmail("adoam@gmail.com")
+                                .teamId("02")
+                                .tableOrBreakoutRoom("Table")
+                                .requestTime(LocalDateTime.of(2022, Month.JULY, 23, 13, 12, 12))
+                                .explanation("Need help with Windows")
+                                .solved(false)
                                 .build();
                                 
-                restaurantRepository.save(restaurant);
+                helpRequestRepository.save(helpRequest);
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/restaurants?id=1"))
+                MvcResult response = mockMvc.perform(get("/api/helprequests?id=1"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                String expectedJson = mapper.writeValueAsString(restaurant);
+                String expectedJson = mapper.writeValueAsString(helpRequest);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }
 
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
-        public void an_admin_user_can_post_a_new_restaurant() throws Exception {
+        public void an_admin_user_can_post_a_new_helprequest() throws Exception {
                 // arrange
 
-                Restaurant restaurant1 = Restaurant.builder()
-                                .id(1L)
-                                .name("Chipotle")
-                                .description("Mexican")
-                                .build();
+                HelpRequest helpRequest = HelpRequest.builder()
+                .id(1L)
+                .requesterEmail("adoam2@gmail.com")
+                .teamId("02")
+                .tableOrBreakoutRoom("Table")
+                .requestTime(LocalDateTime.of(2022, Month.JULY, 23, 13, 12, 12))
+                .explanation("Need")
+                .solved(false)
+                .build();
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/restaurants/post?name=Chipotle&description=Mexican")
+                                post("/api/helprequests/post?requesterEmail=adoam2@gmail.com&teamId=02&tableOrBreakoutRoom=Table&requestTime=2022-07-23T13:12:12&explanation=Need&solved=false")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                String expectedJson = mapper.writeValueAsString(restaurant1);
+                String expectedJson = mapper.writeValueAsString(helpRequest);
                 String responseString = response.getResponse().getContentAsString();
+                // responseString = responseString.replace("+", " ");
                 assertEquals(expectedJson, responseString);
         }
 }
