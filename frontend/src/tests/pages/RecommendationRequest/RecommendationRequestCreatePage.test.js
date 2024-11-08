@@ -77,7 +77,6 @@ describe("RecommendationRequestCreatePage tests", () => {
     axiosMock
       .onPost("/api/recommendationrequest/post")
       .reply(202, recommendationRequest);
-
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
