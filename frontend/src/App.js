@@ -119,7 +119,7 @@ function App() {
           <>
             <Route
               exact
-              path="/diningcommonsmenuitem"
+              path="/ucsbdiningcommonsmenuitems"
               element={<UCSBDiningCommonsMenuItemIndexPage />}
             />
             <Route
@@ -133,12 +133,12 @@ function App() {
           <>
             <Route
               exact
-              path="/diningcommonsmenuitem/edit/:id"
+              path="/ucsbdiningcommonsmenuitems/edit/:id"
               element={<UCSBDiningCommonsMenuItemEditPage />}
             />
             <Route
               exact
-              path="/diningcommonsmenuitem/create"
+              path="/ucsbdiningcommonsmenuitems/create"
               element={<UCSBDiningCommonsMenuItemCreatePage />}
             />
             <Route
