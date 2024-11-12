@@ -74,6 +74,7 @@ public class RecommendationRequestIT {
                                 .dateNeeded(needed)
                                 .dateRequested(requested)
                                 .done(false)
+                                .id(1L)
                                 .build();
                                 
                 recommendationRequestRepository.save(recommendationRequest);
@@ -104,11 +105,12 @@ public class RecommendationRequestIT {
                                 .dateNeeded(needed1)
                                 .dateRequested(requested1)
                                 .done(false)
+                                .id(1L)
                                 .build();
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/recommendationrequest/post?requesterEmail=ldelplaya@ucsb.edu&professorEmail=richert@ucsb.edu&explanation=PhD CS Stanford&dateNeeded=2022-05-20T00:00:00&dateRequested=2022-11-15T00:00:00&done=false")
+                                post("/api/recommendationrequest/post?requesterEmail=ldelplaya@ucsb.edu&professorEmail=richert@ucsb.edu&explanation=PhD CS Stanford&dateNeeded=2022-05-20T00:00:00&dateRequested=2022-11-15T00:00&done=false")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
