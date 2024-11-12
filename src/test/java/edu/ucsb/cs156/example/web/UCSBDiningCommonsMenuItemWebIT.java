@@ -21,7 +21,7 @@ public class UCSBDiningCommonsMenuItemWebIT extends WebTestCase {
     public void admin_user_can_create_edit_delete_ucsbDiningCommonsMenuItem() throws Exception {
         setupUser(true);
 
-        page.getByText("UCSB Dining Commons Menu Item").click();
+        page.getByText("UCSBDiningCommonsMenuItem").click();
 
         page.getByText("Create UCSBDiningCommonsMenuItem").click();
         assertThat(page.getByText("Create New UCSBDiningCommonsMenuItem")).isVisible();
