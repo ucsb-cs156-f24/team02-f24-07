@@ -28,8 +28,8 @@ public class RecommendationRequestWebIT extends WebTestCase {
         page.getByTestId("RecommendationRequestForm-requesterEmail").fill("cgaucho@ucsb.edu");
         page.getByTestId("RecommendationRequestForm-professorEmail").fill("phtcon@ucsb.edu");
         page.getByTestId("RecommendationRequestForm-explanation").fill("BS/MS program");
-        page.getByTestId("RecommendationRequestForm-dateNeeded").fill("2022-04-20T00:00:00");
-        page.getByTestId("RecommendationRequestForm-dateRequested").fill("2022-05-11T00:00:00");
+        page.getByTestId("RecommendationRequestForm-dateNeeded").fill("2022-04-20T00:00");
+        page.getByTestId("RecommendationRequestForm-dateRequested").fill("2022-05-11T00:00");
         page.getByTestId("RecommendationRequestForm-done").fill("false");
         page.getByTestId("RecommendationRequestForm-submit").click();
 
@@ -45,6 +45,7 @@ public class RecommendationRequestWebIT extends WebTestCase {
         page.getByTestId("RecommendationRequestForm-requesterEmail").fill("ldelplaya@ucsb.edu");
         // page.getByTestId("RecommendationRequestForm-professorEmail").fill("richert@ucsb.edu");
         // page.getByTestId("RecommendationRequestForm-explanation").fill("PhD CS Stanford");
+        page.getByTestId("RecommendationRequestForm-submit").click();
         page.getByTestId("RecommendationRequestForm-submit").click();
 
         assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-requesterEmail")).hasText("ldelplaya@ucsb.edu");
