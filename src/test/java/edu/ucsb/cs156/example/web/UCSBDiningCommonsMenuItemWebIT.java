@@ -24,11 +24,11 @@ public class UCSBDiningCommonsMenuItemWebIT extends WebTestCase {
         page.getByText("UCSBDiningCommonsMenuItem").click();
 
         page.getByText("Create UCSBDiningCommonsMenuItem").click();
-        assertThat(page.getByText("Create New UCSBDiningCommonsMenuItem")).isVisible();
-        page.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode").fill("ortega"); 
-        page.getByTestId("UCSBDiningCommonsMenuItemForm-name").fill("Baked Pesto Pasta with Chicken");
-        page.getByTestId("UCSBDiningCommonsMenuItemForm-station").fill("Entree Specials");
-        page.getByTestId("UCSBDiningCommonsMenuItemForm-submit").click();
+        assertThat(page.getByText("Create UCSBDiningCommonsMenuItem")).isVisible();
+        page.getByTestId("UCSBDiningCommonsMenuItemForm-Dining Commons Code").fill("ortega"); 
+        page.getByTestId("UCSBDiningCommonsMenuItemForm-Name").fill("Baked Pesto Pasta with Chicken");
+        page.getByTestId("UCSBDiningCommonsMenuItemForm-Station").fill("Entree Specials");
+        page.getByTestId("UCSBDiningCommonsMenuItemForm-Create").click();
 
         assertThat(page.getByTestId("UCSBDiningCommonsMenuItemTable-cell-row-0-col-name"))
                 .hasText("Baked Pesto Pasta with Chicken");
