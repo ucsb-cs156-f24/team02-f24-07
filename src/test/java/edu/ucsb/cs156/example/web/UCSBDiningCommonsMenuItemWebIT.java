@@ -35,10 +35,10 @@ public class UCSBDiningCommonsMenuItemWebIT extends WebTestCase {
 
         page.getByTestId("UCSBDiningCommonsMenuItemTable-cell-row-0-col-Edit-button").click();
         assertThat(page.getByText("Edit UCSBDiningCommonsMenuItem")).isVisible();
-        page.getByTestId("UCSBDiningCommonsMenuItemForm-description").fill("chicken");
+        page.getByTestId("UCSBDiningCommonsMenuItemForm-description").fill("Baked Pesto Pasta with Chicken");
         page.getByTestId("UCSBDiningCommonsMenuItemForm-submit").click();
 
-        assertThat(page.getByTestId("UCSBDiningCommonsMenuItemTable-cell-row-0-col-name")).hasText("chicken");
+        assertThat(page.getByTestId("UCSBDiningCommonsMenuItemTable-cell-row-0-col-name")).hasText("Baked Pesto Pasta with Chicken");
 
         page.getByTestId("UCSBDiningCommonsMenuItemTable-cell-row-0-col-Delete-button").click();
 
