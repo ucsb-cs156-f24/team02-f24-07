@@ -20,4 +20,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f24/team02-f24-07
 owner: ucsb-cs156-f24
 repo_name: team02-f24-07
-pull_requests: [{"author":{"id":"U_kgDOB3EPsA","is_bot":false,"login":"kanav9063","name":""},"headRefName":"ka-team02-end2endtests","number":134,"title":"ka - end to end tests DiningCommonMenu","url":"https://github.com/ucsb-cs156-f24/team02-f24-07/pull/134"},{"author":{"id":"U_kgDOB3EPsA","is_bot":false,"login":"kanav9063","name":""},"headRefName":"ka-team02-e2etest","number":128,"title":"KA -Integration Tests for DiningCommonMenuItems","url":"https://github.com/ucsb-cs156-f24/team02-f24-07/pull/128"}]
+pull_requests: []
