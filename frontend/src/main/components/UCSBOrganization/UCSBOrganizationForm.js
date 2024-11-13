@@ -35,7 +35,7 @@ function OrganizationForm({
               message: "Max length 30 characters",
             },
           })}
-          value={initialContents?.orgCode}
+          defaultValue={initialContents?.orgCode}
           disabled={typeof initialContents !== typeof undefined}
         />
         <Form.Control.Feedback type="invalid">
@@ -59,7 +59,7 @@ function OrganizationForm({
               message: "Max length for the short translation is 30 characters",
             },
           })}
-          value={initialContents?.orgTranslationShort}
+          defaultValue={initialContents?.orgTranslationShort}
         />
         <Form.Control.Feedback type="invalid">
           {errors.orgTranslationShort?.message}
@@ -78,7 +78,7 @@ function OrganizationForm({
           {...register("orgTranslation", {
             required: "Organization Translation is required.",
           })}
-          value={initialContents?.orgTranslation}
+          defaultValue={initialContents?.orgTranslation}
         />
         <Form.Control.Feedback type="invalid">
           {errors.orgTranslation?.message}
@@ -93,7 +93,7 @@ function OrganizationForm({
           type="checkbox"
           isInvalid={Boolean(errors.inactive)}
           {...register("inactive", {})}
-          checked={initialContents?.inactive}
+          defaultChecked={initialContents?.inactive}
         />
         <Form.Control.Feedback type="invalid">
           {errors.inactive?.message}

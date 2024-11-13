@@ -60,7 +60,7 @@ export default function UCSBDiningCommonsMenuItemEditPage({
   };
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/ucsbDiningCommonsMenuItem" />;
+    return <Navigate to="/ucsbdiningcommonsmenuitems" />;
   }
 
   return (
